@@ -1,0 +1,35 @@
+-- Create login table
+CREATE TABLE login (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+-- Create tasks table
+CREATE TABLE tasks (
+    task_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
+    due_date DATE NOT NULL,
+    priority ENUM('Low', 'Medium', 'High') NOT NULL,
+    status ENUM('Not Started', 'In Progress', 'Completed') NOT NULL,
+    cost DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES login(user_id)
+);
+
+-- Add more tables as needed
+-- For example, if you want to track categories for tasks:
+CREATE TABLE categories (
+    category_id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(100) NOT NULL
+);
+
+-- If you want to link tasks to categories:
+CREATE TABLE task_categories (
+    task_category_id INT AUTO_INCREMENT PRIMARY KEY,
+    task_id INT NOT NULL,
+    category_id INT NOT NULL,
+    FOREIGN KEY (task_id) REFERENCES tasks(task_id),
+    FOREIGN KEY (category_id) REFERENCES categories(category_id)
+);

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Finance Manager</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Personal Finance Manager</h1>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="search.html">Search Task</a></li>
+            <li><a href="taskplan.html">Task Plan</a></li>
+           
+        </ul>
+    </nav>
+
+    <main>
+        <input type="text" id="searchInput" placeholder="Search task...">
+        <table id="taskTable">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Cost</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Pay Gym Fee</td>
+            <td>Monthly membership fee for the gym</td>
+            <td>2024-02-01</td>
+            <td>High</td>
+            <td>Completed</td>
+            <td>$50</td>
+        </tr>
+        <tr>
+            <td>Grocery Shopping</td>
+            <td>Buy groceries for the week</td>
+            <td>2024-02-05</td>
+            <td>Medium</td>
+            <td>Not Started</td>
+            <td>$100</td>
+        </tr>
+        <tr>
+            <td>Car Maintenance</td>
+            <td>Take the car for routine maintenance</td>
+            <td>2024-02-10</td>
+            <td>High</td>
+            <td>In Progress</td>
+            <td>$200</td>
+        </tr>
+        <tr>
+            <td>Buy Birthday Gift</td>
+            <td>Purchase a gift for a friend's birthday</td>
+            <td>2024-02-12</td>
+            <td>Medium</td>
+            <td>Not Started</td>
+            <td>$75</td>
+        </tr>
+        <tr>
+            <td>Pay Utility Bills</td>
+            <td>Monthly payment for electricity and water</td>
+            <td>2024-02-15</td>
+            <td>High</td>
+            <td>Not Started</td>
+            <td>$150</td>
+        </tr>
+        <tr>
+            <td>Renew Magazine Subscription</td>
+            <td>Annual subscription renewal for favorite magazine</td>
+            <td>2024-02-20</td>
+            <td>Low</td>
+            <td>Not Started</td>
+            <td>$30</td>
+        </tr>
+    </tbody>
+</table>
+
+    </main>
+
+    <footer>
+        <p>Web App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('searchInput').addEventListener('input', function() {
+            var searchText = this.value.toLowerCase();
+            var rows = document.querySelectorAll('#taskTable tbody tr');
+            
+            rows.forEach(function(row) {
+                var cells = row.querySelectorAll('td');
+                var found = false;
+                cells.forEach(function(cell) {
+                    if (cell.textContent.toLowerCase().includes(searchText)) {
+                        found = true;
+                    }
+                });
+                if (found) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
